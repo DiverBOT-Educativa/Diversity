@@ -86,26 +86,17 @@ void DisplayBar::DibujarPico() {
 
 /*Aqui empieza nuestro programa*/
 
-/*DisplayBar BarLeds[] = {
-  DisplayBar(LedVBatPin, VBatPin, 0, 1023, 16, 2000),
-  DisplayBar(LedVServosPin, VServosPin, 0, 1023, 8, 2000)
-};*/
 DisplayBar displayVBat(LedVBatPin, VBatPin, 441, 515, 16, 1000);
 DisplayBar displayVServos(LedVServosPin, VServosPin, 920, 1023, 8, 1000);
 DisplayBar displayIdcMotors(LedIDcMotorsPin, IDcMotorsPin,512,600,8,500);
 DisplayBar displayIDcBat(LedIDcBatPin, IDcBatPin,512,600,8,500);
-//IServosPin
 DisplayBar displayIServos(LedIServosPin, IServosPin,512,600,8,500);
-//IJetsonNanoPin
 DisplayBar displayIJetsonNano(LedIJetsonNanoPin, IJetsonNanoPin,512,600,8,500);
 
 void setup() {
   Serial.begin(9600);
   Serial.println("Programa iniciado");
-  /*for (int displayBar = 0; displayBar < sizeof(BarLeds); displayBar++) {
-    BarLeds[displayBar].Begin();
-  }*/
-  //BarLeds[0].Begin();
+
   displayVBat.Begin();
   displayVServos.Begin();
   displayIdcMotors.Begin();
@@ -125,10 +116,6 @@ void setup() {
 }
 
 void loop() {
-  /*for (int displayBar = 0; displayBar < sizeof(BarLeds); displayBar++) {
-    BarLeds[displayBar].Dibujar();
-    Serial.println("Dibujando");
-  }*/
   displayVBat.Dibujar();
   displayVServos.Dibujar();
   displayIdcMotors.Dibujar();
