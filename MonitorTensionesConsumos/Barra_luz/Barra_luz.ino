@@ -1,3 +1,43 @@
+/*
+ * Diversity.
+ * 
+ * https://github.com/DiverBOT-Educativa/Diversity
+ * 
+ * Placa monitorización consumos y tensiones.
+ * Esta placa también será la encargada de activar y desactivar
+ * los servos entre otros dispositivos.
+ * 
+ * La comunicación con la Jetson Nano se realizara mediante
+ * el bus I2C. 
+ * 
+ * 
+ * Introducción:
+ *    Diversity es nuestro Curiosity particular. Básicamente
+ *    es un robot con capacidad para transportarse, gracias
+ *    a sus seis ruedas con tracción. Cuatro de ellas, además,
+ *    tiene la capacidad de rotar sobre su eje vertical, lo que
+ *    le permite no solo realizar trayectorias curvas, sino que 
+ *    Diversity es capaz de rotar sobre si mismo, sin necesidad
+ *    de desplazarse.
+ *    
+ *    El proyecto es original de:
+ *    https://bricolabs.cc/wiki/proyectos/curiosity_btl 
+ *    
+ *    Nuestra dirección en github:
+ *    https://github.com/DiverBOT-Educativa/Diversity
+ *    
+ *    
+ *    Aquí unos repositorios que se citaban en el proyecto
+ *    original de bricolabs.cc :
+ *    https://github.com/felixstdp/curiosity_btl
+ *    https://www.thingiverse.com/thing:2414954
+ *    https://www.thingiverse.com/thing:3556381
+ *    https://github.com/javacasm/curiosity_btl
+ *    
+ * 
+ *    
+ */
+
 #include <arduino.h>
 #include <Adafruit_NeoPixel.h>
 
