@@ -7,15 +7,15 @@
  * 
  *    Dirección I2C 0x01
  * Comandos Descripcion     Valor1    Valor2
- *    0x01  Mod PWM M1      0-255
- *    0x02  Mod PWM M2      0-255
+ *    0x00  Mod PWM M1      0-255
+ *    0x01  Mod PWM M2      0-255
  *    ...
- *    0x06  Mod PWM M6      0-255
+ *    0x05  Mod PWM M6      0-255
  *
- *    0x11  Mod Dir M1      0-parar, 1-avanzar, 2-retroceder
- *    0x12  Mod Dir M2      0-parar, 1-avanzar, 2-retroceder
+ *    0x10  Mod Dir M1      0-parar, 1-avanzar, 2-retroceder
+ *    0x11  Mod Dir M2      0-parar, 1-avanzar, 2-retroceder
  *    ...
- *    0x06  Mod Dir M6      0-parar, 1-avanzar, 2-retroceder
+ *    0x05  Mod Dir M6      0-parar, 1-avanzar, 2-retroceder
  * 
  * 
  * 
@@ -66,11 +66,10 @@
 #define M6DIR1 16
 #define M6DIR2 17
 //PWM contiene los pines del EN de los motores
-byte PWM[] = {0, M1PWM, M2PWM, M3PWM, M4PWM, M5PWM, M6PWM};
+byte PWM[] = {M1PWM, M2PWM, M3PWM, M4PWM, M5PWM, M6PWM};
 
 //Dir contiene los pines de dirección y si hay que invertir el sentido de giro.
-byte Dir[7][3] = {        // (MxDIR1,MxDIR2,inversionMotor)
-  {0, 0, 0},
+byte Dir[6][3] = {        // (MxDIR1,MxDIR2,inversionMotor)
   {M1DIR1, M1DIR2, 0},    //Delantero izquierdo
   {M2DIR1, M2DIR2, 0},    //Delantero derecho
   {M3DIR1, M3DIR2, 0},    //Central izquierdo
@@ -87,7 +86,7 @@ bool JetsonNanoOff = true;
 
 void setup() {
   //Inicializamos los pines como salidas
-  for (int i = 1; i<=6; i++){
+  for (int i = 0; i<6; i++){
     pinMode(PWM[i], OUTPUT);
     for (int j = 0; j<=1; j++){
       pinMode(Dir[i][j],OUTPUT);
@@ -96,7 +95,7 @@ void setup() {
   InicioVisualMotores();
   delay(500);
   //Inicializamos el I2C
-  Wire.begin(0x01);
+  Wire.begin(0x41);
   Wire.onReceive(receiveEvent);
 }
 
@@ -143,7 +142,7 @@ void PotenciaMotor(byte motor, byte potencia){
 }
 
 void InicioVisualMotores(){
-  for (byte i = 1; i <= 6; i++){
+  for (byte i = 0; i < 6; i++){
     DireccionMotor(i,1);
     PotenciaMotor(i,100);
     delay(500);
