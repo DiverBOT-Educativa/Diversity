@@ -51,20 +51,20 @@
 #define M1DIR1 13
 #define M1DIR2 12
 #define M2PWM 10    //Delantero derecho
-#define M2DIR1 8
-#define M2DIR2 7
+#define M2DIR1 7
+#define M2DIR2 8
 #define M3PWM 9     //Central izquierdo
-#define M3DIR1 4
-#define M3DIR2 2
+#define M3DIR1 2
+#define M3DIR2 4
 #define M4PWM 6     //Central derecho
-#define M4DIR1 1
-#define M4DIR2 0
+#define M4DIR1 0
+#define M4DIR2 1
 #define M5PWM 5     //Trasero izquierdo
 #define M5DIR1 14
 #define M5DIR2 15
 #define M6PWM 3     //Trasero derecho
-#define M6DIR1 16
-#define M6DIR2 17
+#define M6DIR1 17
+#define M6DIR2 16
 //PWM contiene los pines del EN de los motores
 byte PWM[] = {M1PWM, M2PWM, M3PWM, M4PWM, M5PWM, M6PWM};
 
