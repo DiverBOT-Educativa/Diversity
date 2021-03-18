@@ -1,4 +1,5 @@
 #Import necessary libraries
+#Si no están, descargarlas con 'pip install flask' y 'pip install opencv-python'
 from flask import Flask, render_template, Response
 import cv2
 #Initialize the Flask app
