@@ -4,7 +4,6 @@ from time import sleep
 import socket
 import cv2
 from os import getloadavg
-import base64
 import threading
 import struct
 import logging
@@ -45,7 +44,7 @@ def accept_client(client_socket, addr):
     while True:
         try:
             if frame_result != False:
-                data = base64.b64encode(current_frame)
+                data = current_frame.tobytes()
                 client_socket.sendall(struct.pack("=L", len(data)) + data)
 
         except socket.error as e: # Handle client disconnect
