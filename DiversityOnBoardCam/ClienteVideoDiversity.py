@@ -3,7 +3,7 @@
 import cv2
 import socket
 import sys
-import pickle
+import numpy as np
 import struct
 import logging
 from datetime import datetime
@@ -41,7 +41,7 @@ while True:
 
     print(len(data), len(frame_data))
     
-    frame = pickle.loads(frame_data, fix_imports=True, encoding="bytes")
+    frame = np.frombuffer(frame_data, dtype=np.uint8)
     frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
     cv2.imshow('Diversity real time video',frame)
     cv2.waitKey(10)
