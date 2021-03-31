@@ -4,7 +4,7 @@ from time import sleep
 import socket
 import cv2
 from os import getloadavg
-import pickle
+import base64
 import threading
 import struct
 import logging
@@ -45,7 +45,7 @@ def accept_client(client_socket, addr):
     while True:
         try:
             if frame_result != False:
-                data = pickle.dumps(current_frame,0)
+                data = base64.b64encode(current_frame)
                 client_socket.sendall(struct.pack("=L", len(data)) + data)
 
         except socket.error as e: # Handle client disconnect
