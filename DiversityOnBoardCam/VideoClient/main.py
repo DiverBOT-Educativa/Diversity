@@ -4,7 +4,7 @@ import pickle
 import cv2
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(("127.0.0.1", 9843))
+s.connect(("127.0.0.1", 4643))
 
 payload_size = struct.calcsize("Q")
 data = b""
