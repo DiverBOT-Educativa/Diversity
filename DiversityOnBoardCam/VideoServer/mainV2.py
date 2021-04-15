@@ -13,7 +13,7 @@ from datetime import datetime
 
 if os.name!='nt':    #estamos en linux
     cap = cv2.VideoCapture('nvarguscamerasrc ! video/x-raw(memory:NVMM), width=3264, height=2464, format=(string)NV12, framerate=(fraction)10/1 ! nvvidconv flip-method=2 ! nvvidconv ! video/x-raw, format=(string)BGRx ! videoconvert ! video/x-raw, format=(string)BGR ! appsink' , cv2.CAP_GSTREAMER)
-    cap.set(cv2.CAP_Prop_BUFFERSIZE,1)
+    cap.set(cv2.CAP_PROP_BUFFERSIZE,1)
     logging.basicConfig(
     filename="/home/curiosity/Documentos/Javi/test.log",
     level=logging.DEBUG,

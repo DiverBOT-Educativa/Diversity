@@ -29,7 +29,7 @@ else:                 #estamos en windows
     )
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-port = 4643
+port = 4646
 server_socket.bind(("0.0.0.0", port))
 server_socket.listen()
 
