@@ -30,8 +30,9 @@ GST_ARGUS: 1280 x 720 FR = 59.999999 fps Duration = 16666667 ; Analog Gain range
 GST_ARGUS: 1280 x 720 FR = 120.000005 fps Duration = 8333333 ; Analog Gain range min 1.000000, max 10.625000; Exposure Range min 13000, max 683709000;
 """
 
-cap = cv2.VideoCapture('nvarguscamerasrc ! video/x-raw(memory:NVMM), width=3264, height=2464, format=(string)NV12, framerate=(fraction)10/1 ! nvvidconv flip-method=2 ! nvvidconv ! video/x-raw, format=(string)BGRx ! videoconvert ! video/x-raw, format=(string)BGR ! appsink' , cv2.CAP_GSTREAMER)
+cap = cv2.VideoCapture('nvarguscamerasrc ! video/x-raw(memory:NVMM), width=1920, height=1080, format=(string)NV12, framerate=(fraction)6/1 ! nvvidconv flip-method=2 ! nvvidconv ! video/x-raw, format=(string)BGRx ! videoconvert ! video/x-raw, format=(string)BGR ! appsink max-buffers=1 drop=True' , cv2.CAP_GSTREAMER)
 encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 80]
+cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 current_frame = None
@@ -42,10 +43,12 @@ def accept_client(client_socket, addr):
     logging.log(logging.INFO, f"{connected_client_ip} connected")
     global current_frame
     while True:
+        newFrame.wait(1)
         try:
             if frame_result != False:
                 data = current_frame.tobytes()
                 client_socket.sendall(struct.pack("=L", len(data)) + data)
+                newFrame.clear()
 
         except socket.error as e: # Handle client disconnect
             if e.errno == socket.errno.ECONNRESET:
@@ -72,8 +75,10 @@ def process_camera(camera, encode_param):
             cv2.putText(frame,"Diversity@DiverBOT",(10,60), font, 0.5,(255,255,255),1,cv2.LINE_AA)
             frame_result, current_frame = cv2.imencode('.jpg', frame, encode_param)
             
+            newFrame.set()
+            
 
-
+newFrame = threading.Event()
 camera_thread = threading.Thread(target=process_camera, args=(cap, encode_param))
 camera_thread.start()
 
