@@ -9,4 +9,4 @@ En Octubre de 2020 se retomó, con los alumnos Jairo, Josep, Daniel, Fran, Arnau
 
 2021-03-31 Ya han conseguido hacer el servidor de imagenes de la camara del robot, así como el cliente para poder visualizarlas en el PC. Se ha programado en Python, utilizando OpenCV2 para la captura de imagenes, threading para la optimización de procesos, y pickle para la serialización de los frames. 
 
-2021-04-14 Teniendo en cuenta los fallos de seguridad de pickle, se ha modificado la transferencia de imagenes. Ahora se realiza con numpy
+2021-04-14 Teniendo en cuenta los fallos de seguridad de pickle, se ha modificado la transferencia de imagenes. Ahora se realiza con numpy.
