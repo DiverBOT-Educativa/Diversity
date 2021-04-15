@@ -74,7 +74,6 @@ def process_camera(camera, encode_param):
             cv2.putText(frame,datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-4],(10,30), font, 0.5,(255,255,255),1,cv2.LINE_AA)
             cv2.putText(frame,"Diversity@DiverBOT",(10,60), font, 0.5,(255,255,255),1,cv2.LINE_AA)
             frame_result, current_frame = cv2.imencode('.jpg', frame, encode_param)
-            
             newFrame.set()
             
 
