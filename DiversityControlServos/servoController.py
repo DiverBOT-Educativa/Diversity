@@ -11,8 +11,10 @@ class ServoController():
 		self.pwm = Adafruit_PCA9685.PCA9685(busnum=busnum)
 		self.pwm.set_pwm_freq(60)
 
-		self.minValues = [100, 140, 125, 125, 160, 130]
-		self.maxValues = [575, 610, 590, 590, 530, 420]
+		self.minValues = [115, 140, 125, 115, 160, 130]
+		#self.minValues = [115, 140, 125, 125, 160, 130]
+		self.maxValues = [580, 600, 590, 585, 530, 420]
+		#self.maxValues = [580, 610, 590, 590, 530, 420]
 
 
 	def setAngle(self, servo, angle):
@@ -26,10 +28,10 @@ class ServoController():
 
 if (__name__ == "__main__"):
 	sc = ServoController(1)
-	sc.setAngle(1, PosicionServoAD)
+	sc.setAngle(0, PosicionServoAD)
 
-	sc.setAngle(1, 0)
-	sc.setAngle(1, 90)
+	sc.setAngle(3, 90)
+
 
 
 
